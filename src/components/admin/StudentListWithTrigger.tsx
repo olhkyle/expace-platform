@@ -1,20 +1,21 @@
-"use client";
+'use client'
 
-import { Suspense, useState } from "react";
-import { CourseSelect, StudentList } from ".";
-import { Course, courses } from "@/constants/courses";
+import { Suspense, useState } from 'react'
+import { Loader } from 'lucide-react'
+import { CourseSelect, StudentList } from '.'
+import { Course, courses } from '@/constants/courses'
 
 const StudentListWithTrigger = () => {
-  const [course, setCourse] = useState<Course>(courses[0]);
+	const [course, setCourse] = useState<Course>(courses[0])
 
-  return (
-    <>
-      <CourseSelect value={course} setValue={setCourse} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <StudentList currentCourse={course} />
-      </Suspense>
-    </>
-  );
-};
+	return (
+		<>
+			<CourseSelect value={course} setValue={setCourse} />
+			<Suspense fallback={<Loader />}>
+				<StudentList currentCourse={course} />
+			</Suspense>
+		</>
+	)
+}
 
-export default StudentListWithTrigger;
+export default StudentListWithTrigger

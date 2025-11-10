@@ -1,60 +1,61 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import { Course } from "@/constants/courses";
-import { useLoading } from "@/hooks";
-import { Student } from "@/supabase/schema";
-import { getStudentsByCurrentCourse } from "@/supabase/api/students";
+import { useEffect, useState } from 'react'
+import { Course } from '@/constants/courses'
+import { useLoading } from '@/hooks'
+import { UserType } from '@/models/user'
+import axios from 'axios'
 
 interface StudentListProps {
-  currentCourse: Course;
+	currentCourse: Course
 }
 
 export default function StudentList({ currentCourse }: StudentListProps) {
-  const { startTransition, isLoading, Loading } = useLoading();
-  const [students, setStudents] = useState<Student[] | null>(null);
+	const { startTransition, isLoading, Loading } = useLoading()
+	const [students, setStudents] = useState<UserType[]>([])
 
-  useEffect(() => {
-    const getStudents = async () => {
-      try {
-        const { data } = await startTransition(
-          getStudentsByCurrentCourse(currentCourse)
-        );
+	const getUsers = async () => {
+		try {
+			const { data } = await startTransition(axios.get('/api/users'))
 
-        setStudents(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
+			setStudents(
+				data.filter((user: UserType) => user.course === currentCourse),
+			)
+		} catch (e) {
+			console.error(e)
+			setStudents([])
+		}
+	}
 
-    getStudents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCourse]);
+	useEffect(() => {
+		getUsers()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentCourse])
 
-  return (
-    <div className="flex justify-center items-center min-w-[300px] min-h-[200px]">
-      {isLoading ? (
-        Loading()
-      ) : (
-        <>
-          {students?.length === 0 ? (
-            <div>⚠️ 데이터가 없습니다.</div>
-          ) : (
-            <ul className="flex flex-col gap-4 mt-10 w-full">
-              <li className="flex gap-6 font-bold">
-                <div>이름</div>
-                <div>이메일</div>
-              </li>
-              {students?.map((student) => (
-                <li key={student.id} className="flex gap-6">
-                  <div className="font-bold">{student.username}</div>
-                  <div>{student.email}</div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </>
-      )}
-    </div>
-  );
+	return (
+		<div className="flex justify-center items-center min-w-[300px] min-h-[200px]">
+			{isLoading ? (
+				<Loading />
+			) : (
+				<>
+					{students?.length === 0 ? (
+						<div>⚠️ Empty Data</div>
+					) : (
+						<ul className="flex flex-col gap-4 mt-8 w-full">
+							<li className="flex gap-6 font-bold">
+								<div>Name</div>
+								<div>Email</div>
+							</li>
+							{students?.map(student => (
+								<li key={student._id.toString()} className="flex gap-6">
+									<div className="font-bold">{student.name}</div>
+									<div>{student.email}</div>
+								</li>
+							))}
+						</ul>
+					)}
+				</>
+			)}
+		</div>
+	)
 }

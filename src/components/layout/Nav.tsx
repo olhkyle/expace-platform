@@ -1,24 +1,24 @@
-import { routes } from "@/constants/routes";
-import Link from "next/link";
+import { routes } from '@/constants/routes'
+import Link from 'next/link'
+import { Button } from '../ui'
 
 export default function Nav() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 flex justify-center items-center my-0 mx-auto w-full border-b-[1px] border-gray-100 bg-gray-50 z-10">
-      <div className="flex justify-between items-center min-w-[300px] w-full sm:max-w-[1200px] min-h-14">
-        <h1 className="p-4 font-bold">
-          <Link href={routes.HOME}>SketchUp Class</Link>
-        </h1>
-        <ul className="p-4">
-          <li>
-            <Link
-              href={routes.REGISTER}
-              className="px-4 py-2 text-gray-600 font-semibold rounded-md hover:bg-gray-200 transition-colors"
-            >
-              Register
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
+	return (
+		<nav className="fixed top-0 left-0 right-0 flex justify-center items-center my-0 mx-auto w-full border-b border-gray-100 bg-gray-50 z-10">
+			<div className="flex justify-between items-center min-w-[300px] w-full sm:max-w-[800px] min-h-10">
+				<h1 className="flex justify-center items-center text-lg font-bold font-mono rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+					<Link href={routes.HOME} className="p-4 w-full h-full">
+						expace
+					</Link>
+				</h1>
+				<ul className="p-4">
+					<li>
+						<Button type="button" variant="default" size="default" asChild>
+							<Link href={routes.REGISTER}>Register</Link>
+						</Button>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	)
 }
