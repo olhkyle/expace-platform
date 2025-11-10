@@ -11,7 +11,7 @@ const StudentListWithTrigger = () => {
 	return (
 		<>
 			<CourseSelect value={course} setValue={setCourse} />
-			<Suspense fallback={<Loader />}>
+			<Suspense fallback={<Loader className="animate-spin" />}>
 				<StudentList currentCourse={course} />
 			</Suspense>
 		</>

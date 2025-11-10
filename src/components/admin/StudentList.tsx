@@ -35,7 +35,7 @@ export default function StudentList({ currentCourse }: StudentListProps) {
 	return (
 		<div className="flex justify-center items-center min-w-[300px] min-h-[200px]">
 			{isLoading ? (
-				<Loading />
+				<Loading className="animate-spin" />
 			) : (
 				<>
 					{students?.length === 0 ? (

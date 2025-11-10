@@ -137,7 +137,7 @@ export default function RegisterForm() {
 					size="lg"
 					className="w-full font-semibold cursor-pointer"
 				>
-					{isLoading ? <Loading /> : '제출하기'}
+					{isLoading ? <Loading className="animate-spin" /> : '제출하기'}
 				</Button>
 			</form>
 		</Form>
