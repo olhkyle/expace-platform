@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-	title: 'class platform',
+	title: 'Expace - class platform',
 	description: 'class register form',
 }
 
