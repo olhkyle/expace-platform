@@ -56,7 +56,7 @@ export default function RegisterForm() {
 				})
 
 				form.reset()
-				router.push(routes.WIP)
+				router.push(routes.USER.WIP)
 			}
 		} catch (e: unknown) {
 			console.error(e)

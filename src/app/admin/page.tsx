@@ -1,10 +1,29 @@
-import { StudentListWithTrigger } from "@/components/admin";
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
+import { Button } from '@/components'
+import { routes } from '@/constants/routes'
 
-export default async function AdminPage() {
-  return (
-    <section className="mt-4 py-10">
-      <h2 className="mb-4 text-xl font-bold">수강생 리스트</h2>
-      <StudentListWithTrigger />
-    </section>
-  );
+export default async function HomePage() {
+	return (
+		<div className="flex flex-col justify-items-center min-h-screen gap-3 p-8 pb-20 bg-white sm:p-16">
+			<div className="p-12 text-white font-semibold bg-gradient-gray-100 rounded-lg">
+				<p>This is a dashboard</p>
+				<p>Still Work In Progress ⚡️</p>
+			</div>
+			<div className="flex flex-col gap-3 w-full">
+				<Button asChild variant="secondary" size="icon-lg" className="w-full">
+					<Link href={routes.ADMIN.ACADEMY}>
+						<ArrowUpRight size={18} />
+						Academy Register List
+					</Link>
+				</Button>
+				<Button asChild variant="secondary" size="icon-lg" className="w-full">
+					<Link href={routes.ADMIN.DESIGNTHOU.NEWS}>
+						<ArrowUpRight size={18} />
+						Designthou News
+					</Link>
+				</Button>
+			</div>
+		</div>
+	)
 }

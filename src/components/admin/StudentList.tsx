@@ -33,7 +33,7 @@ export default function StudentList({ currentCourse }: StudentListProps) {
 	}, [currentCourse])
 
 	return (
-		<div className="flex justify-center items-center min-w-[300px] min-h-[200px]">
+		<div className="flex justify-center items-center min-w-[300px] min-h-[150px]">
 			{isLoading ? (
 				<Loading className="animate-spin" />
 			) : (
@@ -41,7 +41,7 @@ export default function StudentList({ currentCourse }: StudentListProps) {
 					{students?.length === 0 ? (
 						<div>⚠️ Empty Data</div>
 					) : (
-						<ul className="flex flex-col gap-4 mt-8 w-full">
+						<ul className="flex flex-col gap-4 mt-4 w-full">
 							<li className="flex gap-6 font-bold">
 								<div>Name</div>
 								<div>Email</div>

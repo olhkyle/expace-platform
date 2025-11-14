@@ -18,7 +18,7 @@ export default async function WipPage() {
 					/>
 				</div>
 				<Button variant="link" asChild>
-					<Link href={routes.HOME}>홈으로 가기</Link>
+					<Link href={routes.USER.ROOT}>홈으로 가기</Link>
 				</Button>
 			</div>
 		</section>

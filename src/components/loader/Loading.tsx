@@ -1,7 +1,7 @@
-import { Loader2 } from "lucide-react";
+import { Loader } from 'lucide-react'
 
 const Loading = () => {
-  return <Loader2 className="animate-spin" />;
-};
+	return <Loader className="animate-spin" />
+}
 
-export default Loading;
+export default Loading

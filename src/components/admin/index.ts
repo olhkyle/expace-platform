@@ -1,3 +1,4 @@
-export { default as CourseSelect } from "./CourseSelect";
-export { default as StudentList } from "./StudentList";
-export { default as StudentListWithTrigger } from "./StudentListWithTrigger";
+export { default as CourseSelect } from './CourseSelect'
+export { default as NewsList } from './NewsList'
+export { default as StudentList } from './StudentList'
+export { default as StudentListWithTrigger } from './StudentListWithTrigger'
