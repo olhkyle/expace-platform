@@ -2,15 +2,18 @@ import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongoose'
 import User from '@/models/user'
 
-export async function DELETE(
-	request: Request,
-	{ params }: { params: { id: string } },
-) {
+interface Params {
+	params: {
+		id: string
+	}
+}
+
+export async function DELETE(request: Request, { params }: Params) {
 	try {
 		console.log(request.body)
 		await connectDB()
 
-		const { id } = await params
+		const { id } = params
 
 		const deletedUser = await User.findByIdAndDelete(id)
 

@@ -5,7 +5,7 @@ import axios from 'axios'
 import { UserType } from '@/models/user'
 import { Loading } from '../loader'
 
-export default function qNewsList() {
+export default function NewsList() {
 	const [news, setNews] = useState<UserType[]>([])
 	const [isLoading, setLoading] = useState(false)
 
