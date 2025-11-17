@@ -28,7 +28,7 @@ export default function AdminNav() {
 					<Button
 						type="button"
 						size="icon-md"
-						variant="outline"
+						variant="neutral"
 						onClick={toggle}
 					>
 						{isSideNavOpen ? <X /> : <Menu />}

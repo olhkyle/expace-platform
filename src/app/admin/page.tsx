@@ -5,7 +5,7 @@ import { routes } from '@/constants/routes'
 
 export default async function HomePage() {
 	return (
-		<div className="flex flex-col justify-items-center min-h-screen gap-3 p-8 pb-20 bg-white sm:p-16">
+		<div className="flex flex-col justify-items-center gap-3 p-4 pb-20 bg-white">
 			<div className="p-12 text-white font-semibold bg-gradient-gray-100 rounded-lg">
 				<p>This is a dashboard</p>
 				<p>Still Work In Progress ⚡️</p>

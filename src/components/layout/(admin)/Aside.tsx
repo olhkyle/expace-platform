@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import { FilePlus, LayoutList, Search } from 'lucide-react'
+import { BookA, Newspaper, Search } from 'lucide-react'
 import { Button } from '@/components/ui'
 import { routes } from '@/constants/routes'
 
@@ -10,12 +10,12 @@ const links = [
 	{
 		title: 'Academy',
 		to: routes.ADMIN.ACADEMY,
-		icon: <FilePlus size={18} className="text-gray-900" />,
+		icon: <BookA size={18} className="text-gray-900" />,
 	},
 	{
 		title: 'Designthou News',
 		to: routes.ADMIN.DESIGNTHOU.NEWS,
-		icon: <LayoutList size={18} />,
+		icon: <Newspaper size={18} />,
 	},
 ] as const
 

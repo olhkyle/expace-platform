@@ -6,7 +6,7 @@ interface MainProps {
 
 export default function Main({ children }: MainProps) {
 	return (
-		<main className="flex justify-center items-center mt-14 mx-auto text-black bg-white sm:max-w-[800px]">
+		<main className="flex justify-center items-center mt-18 mx-auto w-full text-black bg-white sm:max-w-[800px]">
 			{children}
 		</main>
 	)

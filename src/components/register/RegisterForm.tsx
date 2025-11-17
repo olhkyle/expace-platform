@@ -24,8 +24,15 @@ import { useLoading } from '@/hooks'
 import { courses } from '@/constants/courses'
 import { registerFormSchema, RegisterFormSchema } from './schema'
 import { routes } from '@/constants/routes'
+import { createUser } from '@/lib/api'
 
-export default function RegisterForm() {
+export default function RegisterForm({
+	inDialog = false,
+	close,
+}: {
+	inDialog?: boolean
+	close?: () => void
+}) {
 	const router = useRouter()
 	const form = useForm<RegisterFormSchema>({
 		resolver: zodResolver(registerFormSchema),
@@ -41,14 +48,8 @@ export default function RegisterForm() {
 	const onSubmit = async (values: RegisterFormSchema) => {
 		const today = new Date().toISOString().slice(0, 10)
 
-		const push = async () => {
-			const response = await axios.post('/api/users', values)
-
-			return response
-		}
-
 		try {
-			const { status, data } = await startTransition(push())
+			const { status, data } = await startTransition(createUser(values))
 
 			if (status === 201) {
 				toast(`✅ ${data?.name}님 성공적으로 등록되었습니다`, {
@@ -56,7 +57,12 @@ export default function RegisterForm() {
 				})
 
 				form.reset()
-				router.push(routes.USER.WIP)
+
+				if (inDialog && close) {
+					close()
+				} else {
+					router.push(routes.USER.WIP)
+				}
 			}
 		} catch (e: unknown) {
 			console.error(e)
@@ -67,8 +73,13 @@ export default function RegisterForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="py-36 space-y-8">
-				<h2 className="text-lg font-bold">📋 수업자료 공유를 위한 등록</h2>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className={`${inDialog ? 'py-4' : 'py-8 sm:py-36'} space-y-8`}
+			>
+				<h2 className={`${inDialog ? 'hidden' : 'block'} text-lg font-bold`}>
+					📋 수업자료 공유를 위한 등록
+				</h2>
 				<FormField
 					control={form.control}
 					name="course"
@@ -137,7 +148,7 @@ export default function RegisterForm() {
 					size="lg"
 					className="w-full font-semibold cursor-pointer"
 				>
-					{isLoading ? <Loading className="animate-spin" /> : '제출하기'}
+					{isLoading ? <Loading className="animate-spin" /> : '등록'}
 				</Button>
 			</form>
 		</Form>

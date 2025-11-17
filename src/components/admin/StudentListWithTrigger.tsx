@@ -1,20 +1,19 @@
 'use client'
 
 import { Suspense, useState } from 'react'
-import { CourseSelect, StudentList } from '.'
+import { Loading, CourseSelect, StudentList } from '@/components'
 import { Course, courses } from '@/constants/courses'
-import { Loading } from '../loader'
 
 const StudentListWithTrigger = () => {
 	const [course, setCourse] = useState<Course>(courses[0])
 
 	return (
-		<>
+		<div>
 			<CourseSelect value={course} setValue={setCourse} />
 			<Suspense fallback={<Loading />}>
 				<StudentList currentCourse={course} />
 			</Suspense>
-		</>
+		</div>
 	)
 }
 
