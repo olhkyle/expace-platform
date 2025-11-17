@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongoose'
 import User from '@/models/user'
 
@@ -20,7 +20,7 @@ export async function GET() {
 	}
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
 	try {
 		const body = await request.json()
 		const { name, email, course } = body
