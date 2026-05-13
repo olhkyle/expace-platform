@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { BookA, Newspaper, Search, Sparkle } from "lucide-react";
+import { BookA, Search, Sparkle } from "lucide-react";
 import { Button } from "@/components/ui";
 import { routes } from "@/constants/routes";
 
