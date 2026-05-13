@@ -60,7 +60,8 @@ export default function StudentRegisterForm({
 
   const { optimisticMutate, isMutating } = useOptimisticMutate();
   const onSubmit = async (values: StudentRegisterFormSchema) => {
-    const today = new Date().toISOString().slice(0, 10);
+    const today = new Date();
+    const todaySlicedString = today.toISOString().slice(0, 10);
 
     try {
       await optimisticMutate(
@@ -82,8 +83,8 @@ export default function StudentRegisterForm({
             const optimisticUser = {
               ...values,
               _id: "optimistic-" + Date.now(),
-              createdAt: new Date(),
-              updatedAt: new Date(),
+              createdAt: today,
+              updatedAt: today,
             };
 
             return [...current, optimisticUser];
@@ -95,7 +96,7 @@ export default function StudentRegisterForm({
       );
 
       toast.success(`${values.name}님 성공적으로 등록되었습니다`, {
-        description: today,
+        description: todaySlicedString,
       });
 
       form.reset();
